@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "program_studis",
+  "info": {
+    "singularName": "program-studi",
+    "pluralName": "program-studis",
+    "displayName": "ProgramStudi",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "prodi": {
+      "type": "string"
+    },
+    "id_prodi": {
+      "type": "customField",
+      "options": {
+        "disable-regenerate": false
+      },
+      "customField": "plugin::strapi-advanced-uuid.uuid"
+    },
+    "jurusan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::jurusan.jurusan",
+      "inversedBy": "program_studis"
+    },
+    "mahasiswas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mahasiswa.mahasiswa",
+      "mappedBy": "program_studi"
+    },
+    "dosens": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dosen.dosen",
+      "mappedBy": "program_studi"
+    }
+  }
+}

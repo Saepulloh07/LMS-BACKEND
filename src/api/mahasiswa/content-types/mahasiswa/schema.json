@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mahasiswas",
+  "info": {
+    "singularName": "mahasiswa",
+    "pluralName": "mahasiswas",
+    "displayName": "Mahasiswa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "nim": {
+      "type": "string"
+    },
+    "program_studi": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program-studi.program-studi",
+      "inversedBy": "mahasiswas"
+    }
+  }
+}

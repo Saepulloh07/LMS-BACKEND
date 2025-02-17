@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosens",
+  "info": {
+    "singularName": "dosen",
+    "pluralName": "dosens",
+    "displayName": "Dosen",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "nip": {
+      "type": "string"
+    },
+    "program_studi": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program-studi.program-studi",
+      "inversedBy": "dosens"
+    }
+  }
+}

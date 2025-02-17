@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jurusans",
+  "info": {
+    "singularName": "jurusan",
+    "pluralName": "jurusans",
+    "displayName": "Jurusan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nama_jurusan": {
+      "type": "string"
+    },
+    "id_jurusan": {
+      "type": "customField",
+      "customField": "plugin::strapi-advanced-uuid.uuid"
+    },
+    "program_studis": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::program-studi.program-studi",
+      "mappedBy": "jurusan"
+    }
+  }
+}
