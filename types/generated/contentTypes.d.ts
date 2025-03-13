@@ -399,6 +399,47 @@ export interface ApiAchievementAchievement extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
+  collectionName: 'courses';
+  info: {
+    description: '';
+    displayName: 'Course';
+    pluralName: 'courses';
+    singularName: 'course';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    guidCourse: Schema.Attribute.UID &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'plugin::strapi-advanced-uuid.uuid'>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::course.course'
+    > &
+      Schema.Attribute.Private;
+    mahasiswa: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::mahasiswa.mahasiswa'
+    >;
+    program_studi: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    semester: Schema.Attribute.Integer & Schema.Attribute.Required;
+    sks: Schema.Attribute.Integer & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDosenDosen extends Struct.CollectionTypeSchema {
   collectionName: 'dosens';
   info: {
@@ -503,6 +544,7 @@ export interface ApiMahasiswaMahasiswa extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    courses: Schema.Attribute.Relation<'oneToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -518,6 +560,39 @@ export interface ApiMahasiswaMahasiswa extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::program-studi.program-studi'
     >;
+    publishedAt: Schema.Attribute.DateTime;
+    semester: Schema.Attribute.Integer;
+    status_join: Schema.Attribute.Enumeration<['Pending', 'Accepted']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMateriMateri extends Struct.CollectionTypeSchema {
+  collectionName: 'materis';
+  info: {
+    displayName: 'materi';
+    pluralName: 'materis';
+    singularName: 'materi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    durasi: Schema.Attribute.Integer;
+    linkVideo: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::materi.materi'
+    > &
+      Schema.Attribute.Private;
+    materi: Schema.Attribute.Blocks;
+    pertemuan: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1140,10 +1215,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::achievement.achievement': ApiAchievementAchievement;
+      'api::course.course': ApiCourseCourse;
       'api::dosen.dosen': ApiDosenDosen;
       'api::jurusan.jurusan': ApiJurusanJurusan;
       'api::logo.logo': ApiLogoLogo;
       'api::mahasiswa.mahasiswa': ApiMahasiswaMahasiswa;
+      'api::materi.materi': ApiMateriMateri;
       'api::partner.partner': ApiPartnerPartner;
       'api::program-studi.program-studi': ApiProgramStudiProgramStudi;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

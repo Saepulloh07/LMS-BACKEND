@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materis",
+  "info": {
+    "singularName": "materi",
+    "pluralName": "materis",
+    "displayName": "materi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "pertemuan": {
+      "type": "integer"
+    },
+    "linkVideo": {
+      "type": "string"
+    },
+    "durasi": {
+      "type": "integer"
+    },
+    "materi": {
+      "type": "blocks"
+    }
+  }
+}

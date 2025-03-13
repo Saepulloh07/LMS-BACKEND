@@ -22,6 +22,22 @@
       "relation": "manyToOne",
       "target": "api::program-studi.program-studi",
       "inversedBy": "mahasiswas"
+    },
+    "status_join": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Accepted"
+      ]
+    },
+    "semester": {
+      "type": "integer"
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course.course",
+      "mappedBy": "mahasiswa"
     }
   }
 }

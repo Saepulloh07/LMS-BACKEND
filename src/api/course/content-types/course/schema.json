@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "sks": {
+      "type": "integer",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "guidCourse": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::strapi-advanced-uuid.uuid"
+    },
+    "semester": {
+      "type": "integer",
+      "required": true
+    },
+    "program_studi": {
+      "type": "string",
+      "required": true
+    },
+    "mahasiswa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::mahasiswa.mahasiswa",
+      "inversedBy": "courses"
+    }
+  }
+}
